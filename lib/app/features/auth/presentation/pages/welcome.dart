@@ -1,6 +1,12 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:heroicons/heroicons.dart';
+import 'package:jobsense/app/common/widgets/button.dart';
+import 'package:jobsense/app/extensions/contextx.dart';
 import 'package:jobsense/app/extensions/numx.dart';
+import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
 
 @RoutePage()
@@ -93,7 +99,7 @@ class Welcome extends StatelessWidget {
                     BlocBuilder<OmnisenseAuthCubit, OmnisenseAuthState>(
                       builder: (context, state) {
                         return state.maybeWhen(
-                          initial: () => OmnisenseButton(
+                          initial: () => JobsenseButton(
                             text: 'Continue with Google',
                             color: context.colorScheme.onPrimary,
                             icon: Image.asset(
@@ -125,13 +131,9 @@ class Welcome extends StatelessWidget {
                               ),
                             ],
                           ),
-                          orElse: () => OmnisenseButton(
+                          orElse: () => JobsenseButton(
                             text: 'Continue with Google',
-                            icon: Image.asset(
-                              Assets.assetsImagesGoogle,
-                              height: 28,
-                              width: 28,
-                            ),
+                            icon: const HeroIcon(HeroIcons.commandLine),
                             color: context.colorScheme.onPrimary,
                             action: () {
                               context.router.pushNamed('/google-auth');
