@@ -6,6 +6,7 @@ import 'package:heroicons/heroicons.dart';
 import 'package:jobsense/app/common/widgets/button.dart';
 import 'package:jobsense/app/extensions/contextx.dart';
 import 'package:jobsense/app/extensions/numx.dart';
+import 'package:jobsense/app/features/auth/domain/cubit/jobsense_auth_cubit.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
 
@@ -96,29 +97,25 @@ class Welcome extends StatelessWidget {
                       stopPauseOnTap: true,
                     ),
                     const Spacer(),
-                    BlocBuilder<OmnisenseAuthCubit, OmnisenseAuthState>(
+                    BlocBuilder<JobsenseAuthCubit, JobsenseAuthState>(
                       builder: (context, state) {
                         return state.maybeWhen(
                           initial: () => JobsenseButton(
                             text: 'Continue with Google',
                             color: context.colorScheme.onPrimary,
-                            icon: Image.asset(
-                              Assets.assetsImagesGoogle,
-                              height: 28,
-                              width: 28,
-                            ),
+                            icon: const HeroIcon(HeroIcons.signal),
                             action: () {
                               context
-                                  .read<OmnisenseAuthCubit>()
+                                  .read<JobsenseAuthCubit>()
                                   .loginWithGoogle();
                             },
                           ),
-                          failure: (failure) => OmnisenseButton(
+                          failure: (failure) => JobsenseButton(
                             text: 'Retry with Google',
                             color: context.colorScheme.onPrimary,
                             action: () {
                               context
-                                  .read<OmnisenseAuthCubit>()
+                                  .read<JobsenseAuthCubit>()
                                   .loginWithGoogle();
                             },
                           ),
