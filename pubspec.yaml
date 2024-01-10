@@ -22,6 +22,7 @@ dependencies:
     sdk: flutter
   freezed: ^2.4.6
   freezed_annotation: ^2.4.1
+  glass_kit: ^3.0.0
   heroicons: ^0.9.0
   intl: ^0.18.0
   quickalert: ^1.0.2
