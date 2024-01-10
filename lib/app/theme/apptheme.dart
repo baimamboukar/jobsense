@@ -9,10 +9,11 @@ class AppColorScheme {
 ColorScheme _getColorScheme(Brightness brightness) {
   return SeedColorScheme.fromSeeds(
     brightness: brightness,
-    primaryKey: const Color(0xFF64AAFE),
-    secondaryKey: const Color(0xFFA1E4F3),
-    tertiaryKey: const Color(0xFF383344),
-    background: const Color(0xFF252441),
+    primary: const Color.fromARGB(255, 67, 190, 48),
+    primaryKey: const Color(0xFFC4E860),
+    secondary: const Color(0xFF1B2121),
+    tertiary: const Color(0xFFEEFCE3),
+    background: const Color.fromARGB(255, 226, 229, 233),
     tones: FlexTones.vivid(brightness),
   );
 }

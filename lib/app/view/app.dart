@@ -26,6 +26,7 @@ class _AppState extends State<App> {
       child: MaterialApp.router(
         theme: JobSenseTheme.light,
         darkTheme: JobSenseTheme.dark,
+        themeMode: ThemeMode.light,
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         routeInformationParser: _router.defaultRouteParser(),
