@@ -2,7 +2,6 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:heroicons/heroicons.dart';
 import 'package:jobsense/app/common/widgets/button.dart';
 import 'package:jobsense/app/extensions/contextx.dart';
 import 'package:jobsense/app/extensions/numx.dart';
@@ -73,20 +72,22 @@ class Welcome extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      'Omnisense AI',
+                      'Jobsense',
                       style: context.theme.textTheme.displaySmall!.copyWith(
-                        color: context.colorScheme.onPrimary,
+                        //    color: context.colorScheme.onPrimary,
+                        fontSize: 48,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                     AnimatedTextKit(
                       repeatForever: true,
                       animatedTexts: [
                         TypewriterAnimatedText(
-                          'Do everything with flex and confidence',
+                          'Your AI powered Job search platform',
                           textStyle:
                               context.theme.textTheme.bodyMedium!.copyWith(
-                            color: context.colorScheme.onPrimary,
-                            fontSize: 14,
+                            color: context.colorScheme.secondary,
+                            fontSize: 18.5,
                           ),
                           speed: const Duration(milliseconds: 50),
                           cursor: '✨',
@@ -97,63 +98,21 @@ class Welcome extends StatelessWidget {
                       stopPauseOnTap: true,
                     ),
                     const Spacer(),
-                    // const _AuthUI(),
                     38.vGap,
                   ],
                 ),
               ),
             ),
+            JobsenseButton(
+              color: context.colorScheme.onPrimary,
+              action: () {
+                context.router.pushNamed('/jobsense-home');
+              },
+              text: 'Get Started',
+            ),
           ],
         ),
       ),
-    );
-  }
-}
-
-class _AuthUI extends StatelessWidget {
-  const _AuthUI({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<JobsenseAuthCubit, JobsenseAuthState>(
-      builder: (context, state) {
-        return state.maybeWhen(
-          initial: () => JobsenseButton(
-            text: 'Continue with Google',
-            color: context.colorScheme.onPrimary,
-            icon: const HeroIcon(HeroIcons.signal),
-            action: () {
-              //   context.read<JobsenseAuthCubit>().loginWithGoogle();
-            },
-          ),
-          failure: (failure) => JobsenseButton(
-            text: 'Retry with Google',
-            color: context.colorScheme.onPrimary,
-            action: () {
-              //  context.read<JobsenseAuthCubit>().loginWithGoogle();
-            },
-          ),
-          loading: () => Column(
-            children: [
-              const CircularProgressIndicator(),
-              Text(
-                'Loading...',
-                style: context.theme.textTheme.bodySmall,
-              ),
-            ],
-          ),
-          orElse: () => JobsenseButton(
-            text: 'Continue with Google',
-            icon: const HeroIcon(HeroIcons.commandLine),
-            color: context.colorScheme.onPrimary,
-            action: () {
-              context.router.pushNamed('/google-auth');
-            },
-          ),
-        );
-      },
     );
   }
 }
