@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-jobsense-dev-135708-authRole",
+      "UnauthRoleArn": "arn:aws:iam::104108260061:role/amplify-jobsense-dev-135708-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::104108260061:role/amplify-jobsense-dev-135708-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-jobsense-dev-135708-deployment",
+      "UnauthRoleName": "amplify-jobsense-dev-135708-unauthRole",
+      "StackName": "amplify-jobsense-dev-135708",
+      "StackId": "arn:aws:cloudformation:us-east-1:104108260061:stack/amplify-jobsense-dev-135708/c6e44a30-afb7-11ee-a8ee-0ea674c7a179",
+      "AmplifyAppId": "d3cg3twdpf1xww"
+    }
+  }
+}
