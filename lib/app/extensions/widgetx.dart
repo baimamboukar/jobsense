@@ -9,4 +9,8 @@ extension WidgetX on Widget {
         padding: const EdgeInsets.symmetric(horizontal: 14),
         child: this,
       );
+  Padding hPaddingx(double x) => Padding(
+        padding: EdgeInsets.symmetric(horizontal: x),
+        child: this,
+      );
 }
