@@ -16,5 +16,9 @@ class AppRouter extends $AppRouter {
       page: Homepage.page,
       path: '/jobsense-home',
     ),
+    AutoRoute(
+      page: JobDescriptionRoute.page,
+      path: '/jobsense-job-description',
+    ),
   ];
 }
