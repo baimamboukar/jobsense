@@ -1,12 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:glass_kit/glass_kit.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:jobsense/app/extensions/contextx.dart';
 import 'package:jobsense/app/extensions/numx.dart';
 import 'package:jobsense/app/extensions/widgetx.dart';
 import 'package:jobsense/app/features/auth/presentation/widgets/overlay_navigation.dart';
+import 'package:jobsense/app/features/home/data/models/job.dart';
 import 'package:jobsense/app/features/home/presenation/widgets/recent_jobs.dart';
 import 'package:jobsense/app/features/home/presenation/widgets/welcome_tile.dart';
+import 'package:jobsense/app/router/router.gr.dart' as routes;
 
 @RoutePage()
 class Homepage extends StatefulWidget {
@@ -41,6 +44,7 @@ class _HomepageState extends State<Homepage> {
     WidgetsBinding.instance.addPostFrameCallback(_postFrameCallback);
     return Scaffold(
       body: SingleChildScrollView(
+        controller: _scrollController,
         child: _ScrollListener(
           scrollController: _scrollController,
           triggerPercentage: triggerPercentage,
@@ -54,9 +58,178 @@ class _HomepageState extends State<Homepage> {
 
               const SearchBox().hPadding,
               24.vGap,
+              const RelevantJobs(),
+
+              34.vGap,
               const RecentJobs().hPadding,
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class RelevantJobs extends StatelessWidget {
+  const RelevantJobs({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 175,
+      child: ListView.builder(
+        shrinkWrap: true,
+        controller: ScrollController(),
+        scrollDirection: Axis.horizontal,
+        itemCount: jobs.length,
+        itemBuilder: (BuildContext context, int index) {
+          final job = jobs[index];
+          return JobBox(job: job).hPadding;
+        },
+      ),
+    );
+  }
+}
+
+class JobBox extends StatelessWidget {
+  const JobBox({
+    required this.job,
+    super.key,
+  });
+  final Job job;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        context.router.push(routes.JobDescriptionRoute(job: job));
+      },
+      child: Container(
+        height: 174,
+        width: context.width * .8,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.bottomRight,
+            colors: [
+              context.colorScheme.primary.withOpacity(.7),
+              context.colorScheme.primary.withOpacity(.2),
+            ],
+          ),
+          borderRadius: BorderRadius.circular(14),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Container(
+                  height: 50,
+                  width: 50,
+                  decoration: BoxDecoration(
+                    color: context.colorScheme.onPrimary,
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  child: const FlutterLogo(),
+                ),
+                8.hGap,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(job.title),
+                    Text(
+                      job.company,
+                      style: context.typography.labelMedium,
+                    ),
+                    Text(
+                      '${job.location.city} • ${job.location.country}',
+                      style: context.typography.labelSmall,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            8.vGap,
+            Visibility(
+              visible: !job.machesProfile,
+              replacement: Row(
+                children: [
+                  const HeroIcon(HeroIcons.lightBulb, size: 18),
+                  2.hGap,
+                  Text(
+                    'You might be a good fit',
+                    style: context.typography.labelLarge,
+                  ),
+                ],
+              ),
+              child: Row(
+                children: [
+                  const HeroIcon(HeroIcons.sparkles, size: 18),
+                  2.hGap,
+                  Text(
+                    'Matches your profile',
+                    style: context.typography.labelLarge,
+                  ),
+                ],
+              ),
+            ),
+            8.vGap,
+            const Wrap(
+              spacing: 8,
+              children: [
+                Slug(content: 'UX Design'),
+                Slug(content: 'Remote'),
+                Slug(content: 'Contract'),
+              ],
+            ),
+            const Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    const HeroIcon(HeroIcons.briefcase, size: 18),
+                    2.hGap,
+                    Text(
+                      '2 days ago • ${job.applicantsCount} applicants',
+                      style: context.typography.labelSmall,
+                    ),
+                  ],
+                ),
+                Text(
+                  job.renumeration.currencyFormat,
+                  style: context.typography.bodyLarge!.copyWith(
+                    color: context.colorScheme.onPrimary,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ).hPadding.vPadding,
+      ),
+    );
+  }
+}
+
+class Slug extends StatelessWidget {
+  const Slug({
+    required this.content,
+    super.key,
+  });
+  final String content;
+
+  @override
+  Widget build(BuildContext context) {
+    return GlassContainer.frostedGlass(
+      height: 24,
+      width: 74,
+      borderRadius: BorderRadius.circular(8),
+      child: Center(
+        child: Text(
+          content,
+          style: context.typography.bodySmall,
         ),
       ),
     );
