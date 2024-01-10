@@ -74,7 +74,7 @@ class Welcome extends StatelessWidget {
                     Text(
                       'Jobsense',
                       style: context.theme.textTheme.displaySmall!.copyWith(
-                        //    color: context.colorScheme.onPrimary,
+                        color: context.colorScheme.onPrimary,
                         fontSize: 48,
                         fontWeight: FontWeight.bold,
                       ),
