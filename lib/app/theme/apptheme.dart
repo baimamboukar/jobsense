@@ -13,7 +13,7 @@ ColorScheme _getColorScheme(Brightness brightness) {
     primaryKey: const Color(0xFFC4E860),
     secondary: const Color(0xFF1B2121),
     tertiary: const Color(0xFFEEFCE3),
-    background: const Color.fromARGB(255, 226, 229, 233),
+    background: const Color(0xFFF6F6F6),
     tones: FlexTones.vivid(brightness),
   );
 }
