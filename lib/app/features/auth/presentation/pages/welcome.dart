@@ -47,12 +47,12 @@ class Welcome extends StatelessWidget {
                     context.colorScheme.primary.withOpacity(.2),
                   ],
                 ),
-                image: const DecorationImage(
-                  image: AssetImage(
-                    Assets.assetsImagesHappy,
-                  ),
-                  fit: BoxFit.cover,
-                ),
+                // image: const DecorationImage(
+                //   image: AssetImage(
+                //     Assets.assetsImagesHappy,
+                //   ),
+                //   fit: BoxFit.cover,
+                // ),
               ),
             ),
             Expanded(
@@ -97,48 +97,7 @@ class Welcome extends StatelessWidget {
                       stopPauseOnTap: true,
                     ),
                     const Spacer(),
-                    BlocBuilder<JobsenseAuthCubit, JobsenseAuthState>(
-                      builder: (context, state) {
-                        return state.maybeWhen(
-                          initial: () => JobsenseButton(
-                            text: 'Continue with Google',
-                            color: context.colorScheme.onPrimary,
-                            icon: const HeroIcon(HeroIcons.signal),
-                            action: () {
-                              context
-                                  .read<JobsenseAuthCubit>()
-                                  .loginWithGoogle();
-                            },
-                          ),
-                          failure: (failure) => JobsenseButton(
-                            text: 'Retry with Google',
-                            color: context.colorScheme.onPrimary,
-                            action: () {
-                              context
-                                  .read<JobsenseAuthCubit>()
-                                  .loginWithGoogle();
-                            },
-                          ),
-                          loading: () => Column(
-                            children: [
-                              const CircularProgressIndicator(),
-                              Text(
-                                'Loading...',
-                                style: context.theme.textTheme.bodySmall,
-                              ),
-                            ],
-                          ),
-                          orElse: () => JobsenseButton(
-                            text: 'Continue with Google',
-                            icon: const HeroIcon(HeroIcons.commandLine),
-                            color: context.colorScheme.onPrimary,
-                            action: () {
-                              context.router.pushNamed('/google-auth');
-                            },
-                          ),
-                        );
-                      },
-                    ),
+                    // const _AuthUI(),
                     38.vGap,
                   ],
                 ),
@@ -147,6 +106,54 @@ class Welcome extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _AuthUI extends StatelessWidget {
+  const _AuthUI({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<JobsenseAuthCubit, JobsenseAuthState>(
+      builder: (context, state) {
+        return state.maybeWhen(
+          initial: () => JobsenseButton(
+            text: 'Continue with Google',
+            color: context.colorScheme.onPrimary,
+            icon: const HeroIcon(HeroIcons.signal),
+            action: () {
+              //   context.read<JobsenseAuthCubit>().loginWithGoogle();
+            },
+          ),
+          failure: (failure) => JobsenseButton(
+            text: 'Retry with Google',
+            color: context.colorScheme.onPrimary,
+            action: () {
+              //  context.read<JobsenseAuthCubit>().loginWithGoogle();
+            },
+          ),
+          loading: () => Column(
+            children: [
+              const CircularProgressIndicator(),
+              Text(
+                'Loading...',
+                style: context.theme.textTheme.bodySmall,
+              ),
+            ],
+          ),
+          orElse: () => JobsenseButton(
+            text: 'Continue with Google',
+            icon: const HeroIcon(HeroIcons.commandLine),
+            color: context.colorScheme.onPrimary,
+            action: () {
+              context.router.pushNamed('/google-auth');
+            },
+          ),
+        );
+      },
     );
   }
 }
