@@ -12,7 +12,7 @@ ColorScheme _getColorScheme(Brightness brightness) {
     primaryKey: const Color(0xFF64AAFE),
     secondaryKey: const Color(0xFFA1E4F3),
     tertiaryKey: const Color(0xFF383344),
-    background: smoke,
+    background: const Color(0xFF252441),
     tones: FlexTones.vivid(brightness),
   );
 }
