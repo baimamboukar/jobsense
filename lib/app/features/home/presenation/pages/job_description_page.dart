@@ -2,6 +2,7 @@
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:heroicons/heroicons.dart';
 import 'package:jobsense/app/extensions/contextx.dart';
 import 'package:jobsense/app/extensions/numx.dart';
 import 'package:jobsense/app/extensions/widgetx.dart';
@@ -19,13 +20,18 @@ class JobDescriptionPage extends StatefulWidget {
 
 class _JobDescriptionPageState extends State<JobDescriptionPage> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
           const SliverAppBar(
             // leading: SizedBox.shrink(),
-            expandedHeight: 274,
+            expandedHeight: 224,
             flexibleSpace: SliverAppBarContent(),
           ),
           SliverToBoxAdapter(
@@ -59,10 +65,19 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
                 return IndexedStack(
                   index: index,
                   children: const [
-                    _DescSection(
-                      title: 'About US',
-                      content:
-                          '''Enchirch Technologies is a cutting-edge technology company dedicated to transforming the landscape of DevOps and UX Engineering. We are passionate about creating innovative solutions that empower businesses to thrive in the digital era. Our team is composed of talented individuals who are committed to excellence and pushing the boundaries of technology.''',
+                    Column(
+                      children: [
+                        _DescSection(
+                          title: 'About US',
+                          content:
+                              '''Enchirch Technologies is a cutting-edge technology company dedicated to transforming the landscape of DevOps and UX Engineering. We are passionate about creating innovative solutions that empower businesses to thrive in the digital era. Our team is composed of talented individuals who are committed to excellence and pushing the boundaries of technology.''',
+                        ),
+                        _DescSection(
+                          title: 'Job Summary',
+                          content:
+                              '''We are seeking a talented and motivated Software Engineer to join our growing team at Enchirch Technologies. As a Software Engineer, you will play a crucial role in designing, developing, and maintaining software applications that align with our DevOps and UX Engineering focus. This is an excellent opportunity to work on exciting projects, collaborate with cross-functional teams, and contribute to the success of our company.''',
+                        ),
+                      ],
                     ),
                     _DescSection(
                       title: 'Qualitifcations',
@@ -77,10 +92,52 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
                         'Effective communication and collaboration abilities.',
                       ],
                     ),
+                    _DescSection(
+                      title: 'Benefits',
+                      contentList: [
+                        'Competitive salary',
+                        'Health, dental, and vision insurance',
+                        '401(k) retirement plan',
+                        'Flexible work schedule',
+                        'Professional development opportunities',
+                        'Company events and team-building activities',
+                      ],
+                    ),
                   ],
                 ).hPadding;
               },
             ),
+          ),
+          SliverToBoxAdapter(
+            child: Container(
+              height: 64,
+              width: 200,
+              decoration: BoxDecoration(
+                color: context.colorScheme.primary,
+                borderRadius: BorderRadius.circular(32),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  HeroIcon(
+                    HeroIcons.sparkles,
+                    color: context.colorScheme.onPrimary,
+                  ),
+                  12.hGap,
+                  Text(
+                    'Apply to this Job',
+                    style: context.typography.bodyLarge!.copyWith(
+                      fontSize: 18.5,
+                      color: context.colorScheme.onPrimary,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ).hPaddingx(44),
+          ),
+          SliverToBoxAdapter(
+            child: 24.vGap,
           ),
         ],
       ),
@@ -151,27 +208,33 @@ class _DescSection extends StatelessWidget {
     return Column(
       children: [
         14.vGap,
-        Text(
-          title,
-          style: context.typography.bodyLarge!.copyWith(
-            fontSize: 18.5,
-            fontWeight: FontWeight.bold,
-          ),
+        Row(
+          children: [
+            Text(
+              title,
+              style: context.typography.bodyLarge!.copyWith(
+                fontSize: 18.5,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
         ),
+        14.vGap,
         Visibility(
           visible: content != null && contentList == null,
           replacement: Column(
-            children: contentList!
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: (contentList ?? <String>[])
                 .map(
                   (item) => Text(
                     '• $item',
-                    style: context.typography.labelMedium,
-                  ),
+                    style: context.typography.labelLarge,
+                  ).vPaddingx(3.5),
                 )
                 .toList(),
-          ),
+          ).hPadding,
           child: Text(
-            content!,
+            content.toString(),
             style: context.typography.labelMedium,
           ),
         ),
@@ -188,7 +251,7 @@ class SliverAppBarContent extends StatelessWidget {
     return FlexibleSpaceBar(
       background: SizedBox(
         width: double.infinity,
-        height: 274,
+        height: 224,
         child: ClipPath(
           clipper: TrapezoidalClipper(),
           child: ColoredBox(
@@ -244,9 +307,9 @@ class ContentWidget extends StatelessWidget {
             'https://example.com/your_image.jpg',
           ), // Provide the image URL
         ),
-        14.vGap,
+        8.vGap,
         Text(
-          'UX Designer',
+          'Senior UX Designer',
           style: context.typography.bodyLarge!
               .copyWith(color: context.colorScheme.onPrimary, fontSize: 24),
         ),

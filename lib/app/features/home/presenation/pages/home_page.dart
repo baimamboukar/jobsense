@@ -19,12 +19,13 @@ class Homepage extends StatefulWidget {
   State<Homepage> createState() => _HomepageState();
 }
 
+late OverlayEntry overlay;
+
 class _HomepageState extends State<Homepage> {
   final ScrollController _scrollController = ScrollController();
 
   final double triggerPercentage = 0.8;
   final double reverseTriggerPercentage = 0.2;
-  late OverlayEntry overlay;
 
   @override
   void initState() {
@@ -39,7 +40,7 @@ class _HomepageState extends State<Homepage> {
   }
 
   void _postFrameCallback(_) {
-    if (mounted) {
+    if (mounted && context.router.current.path != '/jobsense-home') {
       overlay = _createOverLay(context);
 
       _showOverlayNavigation(context, overlay);
@@ -111,6 +112,7 @@ class JobBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        overlay.remove();
         context.router.push(routes.JobDescriptionRoute(job: job));
       },
       child: Container(
