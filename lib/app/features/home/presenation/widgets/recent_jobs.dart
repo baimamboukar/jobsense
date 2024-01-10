@@ -49,7 +49,7 @@ class RecentJobs extends StatelessWidget {
 
                 //  color: context.colorScheme.onBackground,
                 tiles: [
-                  ...jobs.take(5).map(
+                  ...jobs.take(8).map(
                         (job) => _JobTile(job: job),
                       ),
                 ],
