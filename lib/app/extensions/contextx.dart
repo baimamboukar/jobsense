@@ -19,6 +19,7 @@ extension OmnisenseBuildContextExtension on BuildContext {
   /// ```dart
   /// context.typography
   /// ```
+
   TextTheme get typography => theme.textTheme;
   TextStyle get titleLg => typography.titleLarge!.copyWith(
         //fontWeight: FontWeight.w600,
@@ -69,4 +70,9 @@ extension OmnisenseBuildContextExtension on BuildContext {
   Orientation get orientation => mediaQuery.orientation;
   bool get isPortrait => orientation == Orientation.portrait;
   bool get isLandscape => orientation == Orientation.landscape;
+
+  OverlayState get overlay => Overlay.of(this);
+  OverlayEntry createOverlayEntry(Widget widget) =>
+      OverlayEntry(builder: (_) => widget);
+  void showOverlay(OverlayEntry entry) => overlay.insert(entry);
 }
