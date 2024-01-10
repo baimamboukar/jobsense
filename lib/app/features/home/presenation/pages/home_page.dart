@@ -31,6 +31,13 @@ class _HomepageState extends State<Homepage> {
     super.initState();
   }
 
+  @override
+  void dispose() {
+    navigationListener.setIndex = 0;
+    _scrollController.dispose();
+    super.dispose();
+  }
+
   void _postFrameCallback(_) {
     if (mounted) {
       overlay = _createOverLay(context);
@@ -43,12 +50,12 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback(_postFrameCallback);
     return Scaffold(
-      body: SingleChildScrollView(
-        controller: _scrollController,
-        child: _ScrollListener(
-          scrollController: _scrollController,
-          triggerPercentage: triggerPercentage,
-          reverseTriggerPercentage: reverseTriggerPercentage,
+      body: _ScrollListener(
+        scrollController: _scrollController,
+        triggerPercentage: triggerPercentage,
+        reverseTriggerPercentage: reverseTriggerPercentage,
+        child: SingleChildScrollView(
+          controller: _scrollController,
           child: Column(
             children: [
               34.vGap,
@@ -302,6 +309,7 @@ class _ScrollListener extends StatelessWidget {
         final minScrollExtent = _scrollController.position.minScrollExtent;
 
         if (scrollOffset == 0) {
+          //navigationListener.setIndex = 0;
           navigationListener.resetIndex();
         } else if (scrollOffset / maxScrollExtent > triggerPercentage) {
           navigationListener.setIndex = 0;
