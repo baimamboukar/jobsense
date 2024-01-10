@@ -51,9 +51,10 @@ flutter:
         - asset: assets/fonts/Gilroy-Black.ttf
           weight: 900
   assets:
-    - .env
+    - assets/
     - assets/images/
     - assets/fonts/
+
 flutter_assets:
   assets_path: assets/
   output_path: lib/src/app/
