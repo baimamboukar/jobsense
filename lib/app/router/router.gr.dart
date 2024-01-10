@@ -8,27 +8,35 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i3;
+import 'package:auto_route/auto_route.dart' as _i4;
 import 'package:jobsense/app/features/auth/presentation/pages/authenitcation_page.dart'
     as _i1;
 import 'package:jobsense/app/features/auth/presentation/pages/welcome.dart'
+    as _i3;
+import 'package:jobsense/app/features/home/presenation/pages/home_page.dart'
     as _i2;
 
-abstract class $AppRouter extends _i3.RootStackRouter {
+abstract class $AppRouter extends _i4.RootStackRouter {
   $AppRouter({super.navigatorKey});
 
   @override
-  final Map<String, _i3.PageFactory> pagesMap = {
+  final Map<String, _i4.PageFactory> pagesMap = {
     AuthenticationRoute.name: (routeData) {
-      return _i3.AutoRoutePage<dynamic>(
+      return _i4.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i1.AuthenticationPage(),
       );
     },
-    Welcome.name: (routeData) {
-      return _i3.AutoRoutePage<dynamic>(
+    Homepage.name: (routeData) {
+      return _i4.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i2.Welcome(),
+        child: const _i2.Homepage(),
+      );
+    },
+    Welcome.name: (routeData) {
+      return _i4.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i3.Welcome(),
       );
     },
   };
@@ -36,8 +44,8 @@ abstract class $AppRouter extends _i3.RootStackRouter {
 
 /// generated route for
 /// [_i1.AuthenticationPage]
-class AuthenticationRoute extends _i3.PageRouteInfo<void> {
-  const AuthenticationRoute({List<_i3.PageRouteInfo>? children})
+class AuthenticationRoute extends _i4.PageRouteInfo<void> {
+  const AuthenticationRoute({List<_i4.PageRouteInfo>? children})
       : super(
           AuthenticationRoute.name,
           initialChildren: children,
@@ -45,13 +53,27 @@ class AuthenticationRoute extends _i3.PageRouteInfo<void> {
 
   static const String name = 'AuthenticationRoute';
 
-  static const _i3.PageInfo<void> page = _i3.PageInfo<void>(name);
+  static const _i4.PageInfo<void> page = _i4.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i2.Welcome]
-class Welcome extends _i3.PageRouteInfo<void> {
-  const Welcome({List<_i3.PageRouteInfo>? children})
+/// [_i2.Homepage]
+class Homepage extends _i4.PageRouteInfo<void> {
+  const Homepage({List<_i4.PageRouteInfo>? children})
+      : super(
+          Homepage.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'Homepage';
+
+  static const _i4.PageInfo<void> page = _i4.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i3.Welcome]
+class Welcome extends _i4.PageRouteInfo<void> {
+  const Welcome({List<_i4.PageRouteInfo>? children})
       : super(
           Welcome.name,
           initialChildren: children,
@@ -59,5 +81,5 @@ class Welcome extends _i3.PageRouteInfo<void> {
 
   static const String name = 'Welcome';
 
-  static const _i3.PageInfo<void> page = _i3.PageInfo<void>(name);
+  static const _i4.PageInfo<void> page = _i4.PageInfo<void>(name);
 }
