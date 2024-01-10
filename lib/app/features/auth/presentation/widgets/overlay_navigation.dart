@@ -29,17 +29,17 @@ class OverlayNavigationBar extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     _NavigationAction(
-                      icon: HeroIcons.chartBar,
+                      icon: HeroIcons.signal,
                       callback: () {},
                       index: 1,
                     ),
                     _NavigationAction(
-                      icon: HeroIcons.viewfinderCircle,
+                      icon: HeroIcons.rectangleGroup,
                       callback: () {},
                       index: 2,
                     ),
                     _NavigationAction(
-                      icon: HeroIcons.squares2x2,
+                      icon: HeroIcons.sparkles,
                       callback: () {},
                       index: 3,
                     ),
