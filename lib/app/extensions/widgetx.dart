@@ -13,4 +13,8 @@ extension WidgetX on Widget {
         padding: EdgeInsets.symmetric(horizontal: x),
         child: this,
       );
+  Padding vPaddingx(double x) => Padding(
+        padding: EdgeInsets.symmetric(vertical: x),
+        child: this,
+      );
 }
