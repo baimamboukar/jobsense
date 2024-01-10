@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:jobsense/app/router/router.gr.dart';
 
 @AutoRouterConfig()
 class AppRouter extends $AppRouter {
@@ -9,6 +10,7 @@ class AppRouter extends $AppRouter {
     AutoRoute(
       page: Welcome.page,
       path: '/welcome',
+      initial: true,
     ),
   ];
 }
