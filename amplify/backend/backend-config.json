@@ -1,20 +1,5 @@
 {
-  "api": {
-    "jobsebseapis": {
-      "dependsOn": [
-        {
-          "attributes": [
-            "Name",
-            "Arn"
-          ],
-          "category": "function",
-          "resourceName": "getAllJobs"
-        }
-      ],
-      "providerPlugin": "awscloudformation",
-      "service": "API Gateway"
-    }
-  },
+  "api": {},
   "auth": {
     "jobsenseda0052f8": {
       "customAuth": false,
@@ -49,6 +34,24 @@
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_getAllJobs_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "getAllJobs"
+        }
+      ]
+    },
+    "AMPLIFY_function_getAllJobs_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "getAllJobs"
+        }
+      ]
     }
   }
 }

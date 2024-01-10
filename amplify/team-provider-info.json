@@ -9,14 +9,18 @@
       "UnauthRoleName": "amplify-jobsense-dev-135708-unauthRole",
       "StackName": "amplify-jobsense-dev-135708",
       "StackId": "arn:aws:cloudformation:us-east-1:104108260061:stack/amplify-jobsense-dev-135708/c6e44a30-afb7-11ee-a8ee-0ea674c7a179",
-      "AmplifyAppId": "d3cg3twdpf1xww"
+      "AmplifyAppId": "d3cg3twdpf1xww",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-jobsense-dev-135708-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
         "jobsenseda0052f8": {}
       },
       "function": {
-        "getAllJobs": {}
+        "getAllJobs": {
+          "deploymentBucketName": "amplify-jobsense-dev-135708-deployment",
+          "s3Key": "amplify-builds/getAllJobs-48696470345655545a30-build.zip"
+        }
       }
     }
   }
