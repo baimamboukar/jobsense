@@ -10,6 +10,14 @@
       "StackName": "amplify-jobsense-dev-135708",
       "StackId": "arn:aws:cloudformation:us-east-1:104108260061:stack/amplify-jobsense-dev-135708/c6e44a30-afb7-11ee-a8ee-0ea674c7a179",
       "AmplifyAppId": "d3cg3twdpf1xww"
+    },
+    "categories": {
+      "auth": {
+        "jobsenseda0052f8": {}
+      },
+      "function": {
+        "getAllJobs": {}
+      }
     }
   }
 }

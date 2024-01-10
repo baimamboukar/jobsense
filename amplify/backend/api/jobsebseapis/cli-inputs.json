@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "paths": {
+    "/api/jobs/getAll": {
+      "name": "/api/jobs/getAll",
+      "lambdaFunction": "getAllJobs",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "create",
+          "read",
+          "update",
+          "delete"
+        ]
+      }
+    }
+  }
+}
