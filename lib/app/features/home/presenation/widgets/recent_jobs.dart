@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:jobsense/app/extensions/contextx.dart';
-import 'package:jobsense/app/extensions/datex.dart';
 import 'package:jobsense/app/extensions/numx.dart';
 import 'package:jobsense/app/features/home/data/models/job.dart';
 
@@ -69,16 +68,18 @@ class _JobTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: CircleAvatar(
-        backgroundColor: context.colorScheme.secondary,
-        child: HeroIcon(
-          HeroIcons.shoppingBag,
-          color: context.colorScheme.onPrimary,
+      leading: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: Image.asset(
+          job.companyLogo,
+          height: 38,
+          width: 38,
+          fit: BoxFit.cover,
         ),
       ),
       title: Text(job.title, style: context.typography.labelLarge),
       subtitle: Text(
-        job.postedAt.formattedDate,
+        '${job.location.city}• ${job.location.country}',
         style: context.typography.labelSmall,
       ),
       trailing: Text(

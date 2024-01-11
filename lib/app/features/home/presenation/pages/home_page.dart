@@ -19,10 +19,10 @@ class Homepage extends StatefulWidget {
   State<Homepage> createState() => _HomepageState();
 }
 
-late OverlayEntry overlay;
-
 class _HomepageState extends State<Homepage> {
   final ScrollController _scrollController = ScrollController();
+
+  late OverlayEntry overlay;
 
   final double triggerPercentage = 0.8;
   final double reverseTriggerPercentage = 0.2;
@@ -66,6 +66,29 @@ class _HomepageState extends State<Homepage> {
 
               const SearchBox().hPadding,
               24.vGap,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Selected for you',
+                    style: context.typography.bodyLarge,
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        'See all',
+                        style: context.typography.bodyMedium,
+                      ),
+                      HeroIcon(
+                        HeroIcons.chevronRight,
+                        color: context.colorScheme.onBackground,
+                        size: 14,
+                      ),
+                    ],
+                  ),
+                ],
+              ).hPadding,
+              14.vGap,
               const RelevantJobs(),
 
               34.vGap,
@@ -112,7 +135,6 @@ class JobBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        overlay.remove();
         context.router.push(routes.JobDescriptionRoute(job: job));
       },
       child: Container(
@@ -140,7 +162,13 @@ class JobBox extends StatelessWidget {
                     color: context.colorScheme.onPrimary,
                     borderRadius: BorderRadius.circular(4),
                   ),
-                  child: const FlutterLogo(),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(4),
+                    child: Image.asset(
+                      job.companyLogo,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
                 8.hGap,
                 Column(
@@ -161,7 +189,7 @@ class JobBox extends StatelessWidget {
             ),
             8.vGap,
             Visibility(
-              visible: !job.machesProfile,
+              visible: job.machesProfile,
               replacement: Row(
                 children: [
                   const HeroIcon(HeroIcons.lightBulb, size: 18),
@@ -184,13 +212,9 @@ class JobBox extends StatelessWidget {
               ),
             ),
             8.vGap,
-            const Wrap(
+            Wrap(
               spacing: 8,
-              children: [
-                Slug(content: 'UX Design'),
-                Slug(content: 'Remote'),
-                Slug(content: 'Contract'),
-              ],
+              children: job.tags.map((tag) => Slug(content: tag)).toList(),
             ),
             const Spacer(),
             Row(
@@ -245,11 +269,15 @@ class Slug extends StatelessWidget {
   }
 }
 
-class SearchBox extends StatelessWidget {
-  const SearchBox({
-    super.key,
-  });
+class SearchBox extends StatefulWidget {
+  const SearchBox({super.key});
 
+  @override
+  State<SearchBox> createState() => _SearchBoxState();
+}
+
+class _SearchBoxState extends State<SearchBox>
+    with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -266,6 +294,10 @@ class SearchBox extends StatelessWidget {
               await showModalBottomSheet<void>(
                 context: context,
                 builder: (context) => BottomSheet(
+                  animationController: BottomSheet.createAnimationController(
+                    this,
+                  ),
+                  showDragHandle: true,
                   builder: (context) => Container(
                     height: 200,
                   ),

@@ -1,4 +1,7 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, lines_longer_than_80_chars
+
+import 'package:jobsense/src/app/assets.dart';
+
 class Job {
   Job({
     required this.isSaved,
@@ -7,13 +10,14 @@ class Job {
     required this.type,
     required this.company,
     required this.location,
-    required this.description,
-    required this.url,
+    required this.summary,
     required this.companyLogo,
     required this.postedAt,
     required this.renumeration,
     required this.id,
     required this.applicantsCount,
+    required this.tags,
+    required this.description,
   });
 
   final bool isSaved;
@@ -22,26 +26,27 @@ class Job {
   final String type;
   final String company;
   final Location location;
-  final String description;
-  final String url;
+  final String summary;
   final String companyLogo;
   final DateTime postedAt;
   final int renumeration;
   final int id;
   final int applicantsCount;
+  final List<String> tags;
+  final JobDescription description;
 }
 
 class JobDescription {
   final String about;
-  final String responsibilities;
-  final String qualifications;
-  final String skills;
-  final String benefits;
+  final String overview;
+  final List<String> responsibilities;
+  final List<String> qualifications;
+  final List<String> benefits;
   JobDescription({
+    required this.overview,
     required this.about,
     required this.responsibilities,
     required this.qualifications,
-    required this.skills,
     required this.benefits,
   });
 }
@@ -54,150 +59,246 @@ class Location {
   final String country;
 }
 
+const about =
+    '''Enchirch Technologies is a cutting-edge technology company dedicated to transforming the landscape of DevOps and UX Engineering. We are passionate about creating innovative solutions that empower businesses to thrive in the digital era. Our team is composed of talented individuals who are committed to excellence and pushing the boundaries of technology.''';
+const summary =
+    '''We are seeking a talented and motivated Software Engineer to join our growing team at Enchirch Technologies. As a Software Engineer, you will play a crucial role in designing, developing, and maintaining software applications that align with our DevOps and UX Engineering focus. This is an excellent opportunity to work on exciting projects, collaborate with cross-functional teams, and contribute to the success of our company.''';
+
+final benefits = [
+  'Competitive salary',
+  'Health, dental, and vision insurance',
+  '401(k) retirement plan',
+  'Flexible work schedule',
+  'Professional development opportunities',
+  'Company events and team-building activities',
+];
+
+final qualifs = [
+  "Bachelor's degree in Computer Science, Software Engineering, or a related field.",
+  'Proven experience as a Software Engineer with a focus on DevOps and UX Engineering.',
+  'Strong proficiency in relevant programming languages, frameworks, and tools.',
+  'Solid understanding of software development principles and best practices.',
+  'Experience with DevOps processes, including CI/CD pipelines and automation tools.',
+  'Knowledge of UX design principles and tools.',
+  'Excellent problem-solving and analytical skills.',
+  'Effective communication and collaboration abilities.',
+];
+
+final responsibilities = [
+  'Design, develop, and maintain high-quality software solutions.',
+  'Collaborate with cross-functional teams to understand project requirements and specifications.',
+  'Write clean, efficient, and well-documented code using established coding standards.',
+  'Debug and resolve software defects and issues in a timely manner.',
+  'Participate in Agile or Scrum development processes, including sprint planning, stand-ups, and retrospectives.',
+  'Contribute to the development and maintenance of technical documentation.',
+];
+
 final List<Job> jobs = [
   Job(
     isSaved: false,
-    machesProfile: true,
+    machesProfile: false,
     title: 'Software Engineer',
     type: 'Full-time',
-    company: 'Tech Solutions Inc.',
-    location: Location(city: 'San Francisco', state: 'CA', country: 'USA'),
-    description:
-        'Join our dynamic team and contribute to cutting-edge software projects.',
-    url: 'https://example.com/job1',
-    companyLogo: 'https://example.com/logo1.png',
+    company: 'MTN Cameroon',
+    location: Location(city: 'Yaounde', state: 'Center', country: 'Cameroon'),
+    summary:
+        'Exciting opportunity to contribute to cutting-edge software projects at MTN Cameroon.',
+    companyLogo: Assets.assetsImagesMtn,
+    postedAt: DateTime.now().subtract(const Duration(days: 3)),
+    renumeration: 110000,
+    id: 10,
+    applicantsCount: 80,
+    tags: ['Java', 'Spring', 'Agile'],
+    description: JobDescription(
+      about: about,
+      overview: summary,
+      responsibilities: responsibilities,
+      qualifications: qualifs,
+      benefits: benefits,
+    ),
+  ),
+  Job(
+    isSaved: false,
+    machesProfile: true,
+    title: 'Cloud Network Engineer',
+    type: 'Full-time',
+    company: 'Orange Cameroon',
+    location: Location(city: 'Douala', state: 'Littoral', country: 'Cameroon'),
+    summary:
+        'Join Orange Cameroon and contribute to the optimization and management of our network infrastructure.',
+    companyLogo: Assets.assetsImagesOrange,
+    postedAt: DateTime.now().subtract(const Duration(days: 7)),
+    renumeration: 95000,
+    id: 11,
+    applicantsCount: 50,
+    tags: ['Networking', 'Cisco', 'Telecoms'],
+    description: JobDescription(
+      about: about,
+      overview: summary,
+      responsibilities: responsibilities,
+      qualifications: qualifs,
+      benefits: benefits,
+    ),
+  ),
+  Job(
+    isSaved: false,
+    machesProfile: false,
+    title: 'IT Specialist',
+    type: 'Full-time',
+    company: 'UBA Cameroon',
+    location: Location(city: 'Yaounde', state: '', country: 'Cameroon'),
+    summary:
+        'Exciting opportunity to join UBA Cameroon as an IT Specialist and contribute to our technological advancements.',
+    companyLogo: Assets.assetsImagesUba,
     postedAt: DateTime.now().subtract(const Duration(days: 5)),
-    renumeration: 90000,
-    id: 1,
-    applicantsCount: 120,
+    renumeration: 105000,
+    id: 12,
+    applicantsCount: 60,
+    tags: ['IT Support', 'Networking', 'Security'],
+    description: JobDescription(
+      about: about,
+      overview: summary,
+      responsibilities: responsibilities,
+      qualifications: qualifs,
+      benefits: benefits,
+    ),
+  ),
+  Job(
+    isSaved: false,
+    machesProfile: false,
+    title: 'Marketing Manager',
+    type: 'Full-time',
+    company: 'Nexttel Cameroon',
+    location: Location(city: 'Douala', state: 'Littoral', country: 'Cameroon'),
+    summary:
+        'Lead the marketing efforts at Nexttel Cameroon and drive our brand to new heights.',
+    companyLogo: Assets.assetsImagesNexttel,
+    postedAt: DateTime.now().subtract(const Duration(days: 8)),
+    renumeration: 98000,
+    id: 13,
+    applicantsCount: 45,
+    tags: ['Marketing', 'Management', 'Prospecting'],
+    description: JobDescription(
+      about: about,
+      overview: summary,
+      responsibilities: responsibilities,
+      qualifications: qualifs,
+      benefits: benefits,
+    ),
+  ),
+  Job(
+    isSaved: false,
+    machesProfile: true,
+    title: 'Mobile Engineer',
+    type: 'Full-time',
+    company: 'SABC Cameroon',
+    location: Location(city: 'Douala', state: 'Littoral', country: 'Cameroon'),
+    summary:
+        'Manage financial operations at Standard Chartered Bank Cameroon and contribute to our financial success.',
+    companyLogo: Assets.assetsImagesSabc,
+    postedAt: DateTime.now().subtract(const Duration(days: 9)),
+    renumeration: 120000,
+    id: 15,
+    applicantsCount: 55,
+    tags: ['Flutter', 'Mobile', 'UX Design'],
+    description: JobDescription(
+      about: about,
+      overview: summary,
+      responsibilities: responsibilities,
+      qualifications: qualifs,
+      benefits: benefits,
+    ),
   ),
   Job(
     isSaved: true,
     machesProfile: true,
-    title: 'Data Scientist',
-    type: 'Remote',
-    company: 'Data Insights Co.',
-    location: Location(city: 'New York', state: 'NY', country: 'USA'),
-    description:
-        'Utilize your data analysis skills to extract meaningful insights from complex datasets.',
-    url: 'https://example.com/job2',
-    companyLogo: 'https://example.com/logo2.png',
-    postedAt: DateTime.now().subtract(const Duration(days: 10)),
+    title: 'Customer Service Specialist',
+    type: 'Full-time',
+    company: 'Blue x CAMTEL',
+    location: Location(city: 'Yaounde', state: 'Center', country: 'Cameroon'),
+    summary:
+        'Join CAMTEL as a Customer Service Representative and help us provide exceptional service to our clients.',
+    companyLogo: Assets.assetsImagesBlue,
+    postedAt: DateTime.now().subtract(const Duration(days: 6)),
     renumeration: 95000,
-    id: 2,
-    applicantsCount: 80,
-  ),
-  Job(
-    isSaved: false,
-    machesProfile: true,
-    title: 'Load Balance Engineer',
-    type: 'Full-time',
-    company: 'MTN Cameroon',
-    location: Location(city: 'Yaounde', state: '', country: 'Cameroon'),
-    description:
-        'Exciting opportunity to manage and optimize network traffic through effective load balancing.',
-    url: 'https://example.com/load-balance-engineer-job',
-    companyLogo: 'https://example.com/mtn-logo.png',
-    postedAt: DateTime.now(),
-    renumeration: 120000,
-    id: 3,
-    applicantsCount: 30,
-  ),
-  Job(
-    isSaved: false,
-    machesProfile: true,
-    title: 'Systems Administrator',
-    type: 'Full-time',
-    company: 'ST Digital',
-    location: Location(city: 'Douala', state: 'Littoral', country: 'Cameroon'),
-    description:
-        'Join our IT team to ensure the stability and efficiency of our systems and networks.',
-    url: 'https://example.com/systems-admin-job',
-    companyLogo: 'https://example.com/stdigital-logo.png',
-    postedAt: DateTime.now().subtract(const Duration(days: 7)),
-    renumeration: 95000,
-    id: 4,
-    applicantsCount: 50,
-  ),
-  Job(
-    isSaved: false,
-    machesProfile: true,
-    title: 'Backend Engineer',
-    type: 'Full-time',
-    company: 'Tech Innovators Nigeria',
-    location: Location(city: 'Lagos', state: '', country: 'Nigeria'),
-    description:
-        'Contribute to the development of scalable and efficient backend systems for innovative projects.',
-    url: 'https://example.com/backend-engineer-job',
-    companyLogo: 'https://example.com/tech-innovators-logo.png',
-    postedAt: DateTime.now().subtract(const Duration(days: 3)),
-    renumeration: 110000,
-    id: 5,
+    id: 14,
     applicantsCount: 40,
+    tags: ['Support', 'Communication', 'Engagement'],
+    description: JobDescription(
+      about: about,
+      overview: summary,
+      responsibilities: responsibilities,
+      qualifications: qualifs,
+      benefits: benefits,
+    ),
   ),
   Job(
     isSaved: false,
     machesProfile: true,
-    title: 'AWS Solutions Architect',
+    title: 'Finance Manager',
     type: 'Full-time',
-    company: 'Cloud Dynamics South Africa',
-    location:
-        Location(city: 'Johannesburg', state: '', country: 'South Africa'),
-    description:
-        'Design and implement scalable and secure solutions on the AWS platform.',
-    url: 'https://example.com/aws-solutions-architect-job',
-    companyLogo: 'https://example.com/clouddynamics-logo.png',
-    postedAt: DateTime.now().subtract(const Duration(days: 10)),
-    renumeration: 130000,
-    id: 6,
-    applicantsCount: 25,
-  ),
-  Job(
-    isSaved: false,
-    machesProfile: true,
-    title: 'Web Developer',
-    type: 'Full-time',
-    company: 'WebTech Kenya',
-    location: Location(city: 'Nairobi', state: '', country: 'Kenya'),
-    description:
-        'Build modern and responsive web applications to enhance the online presence of our clients.',
-    url: 'https://example.com/web-developer-job',
-    companyLogo: 'https://example.com/webtech-logo.png',
-    postedAt: DateTime.now().subtract(const Duration(days: 5)),
-    renumeration: 100000,
-    id: 7,
-    applicantsCount: 35,
-  ),
-  Job(
-    isSaved: false,
-    machesProfile: true,
-    title: 'Marketing Strategist',
-    type: 'Full-time',
-    company: 'Digital Dynamics Ghana',
-    location: Location(city: 'Accra', state: '', country: 'Ghana'),
-    description:
-        'Develop and implement effective marketing strategies to promote our digital products and services.',
-    url: 'https://example.com/marketing-strategist-job',
-    companyLogo: 'https://example.com/digitaldynamics-logo.png',
-    postedAt: DateTime.now().subtract(const Duration(days: 8)),
-    renumeration: 90000,
-    id: 8,
-    applicantsCount: 20,
-  ),
-  Job(
-    isSaved: false,
-    machesProfile: true,
-    title: 'Bitcoin Engineer',
-    type: 'Full-time',
-    company: 'Crypto Innovations Ethiopia',
-    location: Location(city: 'Addis Ababa', state: '', country: 'Ethiopia'),
-    description:
-        'Contribute to the development of innovative solutions in the blockchain and cryptocurrency space.',
-    url: 'https://example.com/bitcoin-engineer-job',
-    companyLogo: 'https://example.com/cryptoinnovations-logo.png',
-    postedAt: DateTime.now().subtract(const Duration(days: 12)),
+    company: 'UBA Cameroon',
+    location: Location(city: 'Douala', state: 'Littoral', country: 'Cameroon'),
+    summary:
+        'Manage financial operations at Standard Chartered Bank Cameroon and contribute to our financial success.',
+    companyLogo: Assets.assetsImagesUba,
+    postedAt: DateTime.now().subtract(const Duration(days: 9)),
     renumeration: 120000,
-    id: 9,
-    applicantsCount: 15,
+    id: 15,
+    applicantsCount: 55,
+    tags: ['Finance', 'Accounting', 'Planning'],
+    description: JobDescription(
+      about: about,
+      overview: summary,
+      responsibilities: responsibilities,
+      qualifications: qualifs,
+      benefits: benefits,
+    ),
+  ),
+  Job(
+    isSaved: false,
+    machesProfile: true,
+    title: 'Senior UX Designer',
+    type: 'Full-time',
+    company: 'Enchird Technologies',
+    location: Location(city: 'Yaounde', state: 'Center', country: 'Cameroon'),
+    summary:
+        'Manage financial operations at Standard Chartered Bank Cameroon and contribute to our financial success.',
+    companyLogo: Assets.assetsImagesEnchird,
+    postedAt: DateTime.now().subtract(const Duration(days: 9)),
+    renumeration: 120000,
+    id: 15,
+    applicantsCount: 55,
+    tags: ['Figma', 'UX Design', 'Research'],
+    description: JobDescription(
+      about: about,
+      overview: summary,
+      responsibilities: responsibilities,
+      qualifications: qualifs,
+      benefits: benefits,
+    ),
+  ),
+  Job(
+    isSaved: false,
+    machesProfile: true,
+    title: 'Azure DevOps Engineer',
+    type: 'Full-time',
+    company: 'Caasitech Group LLC',
+    location: Location(city: 'Yaounde', state: 'Center', country: 'Cameroon'),
+    summary:
+        'Manage financial operations at Standard Chartered Bank Cameroon and contribute to our financial success.',
+    companyLogo: Assets.assetsImagesCaasitech,
+    postedAt: DateTime.now().subtract(const Duration(days: 9)),
+    renumeration: 120000,
+    id: 15,
+    applicantsCount: 55,
+    tags: ['Azure', 'DevOps', 'CI/CD'],
+    description: JobDescription(
+      about: about,
+      overview: summary,
+      responsibilities: responsibilities,
+      qualifications: qualifs,
+      benefits: benefits,
+    ),
   ),
 ];

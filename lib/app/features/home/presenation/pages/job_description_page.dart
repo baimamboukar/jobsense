@@ -29,10 +29,10 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          const SliverAppBar(
+          SliverAppBar(
             // leading: SizedBox.shrink(),
             expandedHeight: 224,
-            flexibleSpace: SliverAppBarContent(),
+            flexibleSpace: SliverAppBarContent(job: widget.job),
           ),
           SliverToBoxAdapter(
             child: 24.vGap,
@@ -64,44 +64,30 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
               builder: (context, index, _) {
                 return IndexedStack(
                   index: index,
-                  children: const [
+                  children: [
                     Column(
                       children: [
-                        _DescSection(
+                        const _DescSection(
                           title: 'About US',
-                          content:
-                              '''Enchirch Technologies is a cutting-edge technology company dedicated to transforming the landscape of DevOps and UX Engineering. We are passionate about creating innovative solutions that empower businesses to thrive in the digital era. Our team is composed of talented individuals who are committed to excellence and pushing the boundaries of technology.''',
+                          content: about,
+                        ),
+                        const _DescSection(
+                          title: 'Job Summary',
+                          content: summary,
                         ),
                         _DescSection(
-                          title: 'Job Summary',
-                          content:
-                              '''We are seeking a talented and motivated Software Engineer to join our growing team at Enchirch Technologies. As a Software Engineer, you will play a crucial role in designing, developing, and maintaining software applications that align with our DevOps and UX Engineering focus. This is an excellent opportunity to work on exciting projects, collaborate with cross-functional teams, and contribute to the success of our company.''',
+                          title: 'Responsabilities',
+                          contentList: responsibilities,
                         ),
                       ],
                     ),
                     _DescSection(
                       title: 'Qualitifcations',
-                      contentList: [
-                        "Bachelor's degree in Computer Science, Software Engineering, or a related field.",
-                        'Proven experience as a Software Engineer with a focus on DevOps and UX Engineering.',
-                        'Strong proficiency in relevant programming languages, frameworks, and tools.',
-                        'Solid understanding of software development principles and best practices.',
-                        'Experience with DevOps processes, including CI/CD pipelines and automation tools.',
-                        'Knowledge of UX design principles and tools.',
-                        'Excellent problem-solving and analytical skills.',
-                        'Effective communication and collaboration abilities.',
-                      ],
+                      contentList: qualifs,
                     ),
                     _DescSection(
                       title: 'Benefits',
-                      contentList: [
-                        'Competitive salary',
-                        'Health, dental, and vision insurance',
-                        '401(k) retirement plan',
-                        'Flexible work schedule',
-                        'Professional development opportunities',
-                        'Company events and team-building activities',
-                      ],
+                      contentList: benefits,
                     ),
                   ],
                 ).hPadding;
@@ -244,7 +230,8 @@ class _DescSection extends StatelessWidget {
 }
 
 class SliverAppBarContent extends StatelessWidget {
-  const SliverAppBarContent({super.key});
+  const SliverAppBarContent({required this.job, super.key});
+  final Job job;
 
   @override
   Widget build(BuildContext context) {
@@ -256,7 +243,7 @@ class SliverAppBarContent extends StatelessWidget {
           clipper: TrapezoidalClipper(),
           child: ColoredBox(
             color: context.colorScheme.primary,
-            child: const ContentWidget(),
+            child: ContentWidget(job: job),
           ),
         ),
       ),
@@ -292,7 +279,8 @@ class TrapezoidalClipper extends CustomClipper<Path> {
 }
 
 class ContentWidget extends StatelessWidget {
-  const ContentWidget({super.key});
+  const ContentWidget({required this.job, super.key});
+  final Job job;
 
   @override
   Widget build(BuildContext context) {
@@ -303,39 +291,33 @@ class ContentWidget extends StatelessWidget {
         CircleAvatar(
           backgroundColor: context.colorScheme.onPrimary,
           radius: 32,
-          backgroundImage: const NetworkImage(
-            'https://example.com/your_image.jpg',
-          ), // Provide the image URL
+          backgroundImage: AssetImage(job.companyLogo),
         ),
         8.vGap,
         Text(
-          'Senior UX Designer',
+          job.title,
           style: context.typography.bodyLarge!
               .copyWith(color: context.colorScheme.onPrimary, fontSize: 24),
         ),
         Text(
-          'Enchird Technologies',
+          job.company,
           style: context.typography.bodyLarge,
         ),
         8.vGap,
-        const Wrap(
+        Wrap(
           spacing: 8,
-          children: [
-            Slug(content: 'UX Design'),
-            Slug(content: 'Remote'),
-            Slug(content: 'Contract'),
-          ],
+          children: job.tags.map((tag) => Slug(content: tag)).toList(),
         ),
         14.vGap,
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text(
-              'Yaounde Cameroon',
+              '${job.location.city} • ${job.location.country}',
               style: context.typography.bodyLarge,
             ),
             Text(
-              114000.currencyFormat,
+              job.renumeration.currencyFormat,
               style: context.typography.bodyLarge,
             ),
           ],
