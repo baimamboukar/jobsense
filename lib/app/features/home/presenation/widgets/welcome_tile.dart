@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:jobsense/app/extensions/contextx.dart';
@@ -55,9 +56,16 @@ class _NotificationsAction extends StatelessWidget {
         child: Badge(
           offset: const Offset(5, -5),
           label: const Text('2'),
-          child: HeroIcon(
-            HeroIcons.bell,
-            color: context.colorScheme.primary,
+          child: GestureDetector(
+            onTap: () {
+              context.router.pushNamed(
+                '/jobsense-notifications',
+              );
+            },
+            child: HeroIcon(
+              HeroIcons.bell,
+              color: context.colorScheme.primary,
+            ),
           ),
         ),
       ),

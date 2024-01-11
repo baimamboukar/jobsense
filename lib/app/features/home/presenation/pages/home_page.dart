@@ -40,7 +40,8 @@ class _HomepageState extends State<Homepage> {
   }
 
   void _postFrameCallback(_) {
-    if (mounted && context.router.current.path != '/jobsense-home') {
+    if (mounted) {
+      //&& context.router.current.path != '/jobsense-home'
       overlay = _createOverLay(context);
 
       _showOverlayNavigation(context, overlay);
