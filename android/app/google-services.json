@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "438012950802",
+    "project_id": "jobsense-brain",
+    "storage_bucket": "jobsense-brain.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:438012950802:android:c979e3ec8294f5ed351bcb",
+        "android_client_info": {
+          "package_name": "dev.baimamboukar.jobsense"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrGk5jgFfbySx1dBsqkC1Dk8IyXJRsfME"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
