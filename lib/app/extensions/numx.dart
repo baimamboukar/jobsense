@@ -10,5 +10,5 @@ extension OmnisenseNumExtensions on num {
           locale: 'en',
           symbol: r'$',
         ).format(this / 1000)}K"
-      : NumberFormat.currency(locale: 'en', symbol: r'$').format(this);
+      : NumberFormat.currency(locale: 'en', symbol: 'XAF').format(this);
 }

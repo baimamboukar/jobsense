@@ -37,6 +37,7 @@ dependencies:
 dev_dependencies:
   auto_route_generator: ^7.3.2
   bloc_test: ^9.1.4
+  build_runner: ^2.4.8
   flutter_test:
     sdk: flutter
   mocktail: ^1.0.0

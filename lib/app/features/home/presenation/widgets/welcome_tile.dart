@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:jobsense/app/extensions/contextx.dart';
@@ -10,10 +11,17 @@ class WelcomeTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const CircleAvatar(
-          radius: 24,
-          backgroundImage: NetworkImage(
-            'https://images.unsplash.com/photo-1508002366005-75a695ee2d17?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1936&q=80',
+        GestureDetector(
+          onTap: () {
+            context.router.pushNamed(
+              '/user-profile',
+            );
+          },
+          child: const CircleAvatar(
+            radius: 24,
+            backgroundImage: NetworkImage(
+              'https://images.unsplash.com/photo-1508002366005-75a695ee2d17?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1936&q=80',
+            ),
           ),
         ),
         12.hGap,
@@ -55,9 +63,16 @@ class _NotificationsAction extends StatelessWidget {
         child: Badge(
           offset: const Offset(5, -5),
           label: const Text('2'),
-          child: HeroIcon(
-            HeroIcons.bell,
-            color: context.colorScheme.primary,
+          child: GestureDetector(
+            onTap: () {
+              context.router.pushNamed(
+                '/jobsense-notifications',
+              );
+            },
+            child: HeroIcon(
+              HeroIcons.bell,
+              color: context.colorScheme.primary,
+            ),
           ),
         ),
       ),
