@@ -24,5 +24,9 @@ class AppRouter extends $AppRouter {
       page: AlertsRoute.page,
       path: '/jobsense-notifications',
     ),
+    AutoRoute(
+      page: UserProfileRoute.page,
+      path: '/user-profile',
+    ),
   ];
 }
