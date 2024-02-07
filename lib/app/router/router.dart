@@ -11,12 +11,12 @@ class AppRouter extends $AppRouter {
     AutoRoute(
       page: Welcome.page,
       path: '/welcome',
-      initial: true,
     ),
     AutoRoute(
       page: Homepage.page,
       path: '/jobsense-home',
       guards: [AuthGuard()],
+      initial: true,
     ),
     AutoRoute(
       page: JobDescriptionRoute.page,

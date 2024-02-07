@@ -71,7 +71,7 @@ class _NotificationsAction extends StatelessWidget {
               );
             },
             child: HeroIcon(
-              HeroIcons.bell,
+              HeroIcons.chatBubbleBottomCenter,
               color: context.colorScheme.primary,
             ),
           ),
