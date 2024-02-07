@@ -18,5 +18,6 @@ class JobsenseAuthState with _$JobsenseAuthState {
       _LogoutFailure;
 
   // authenticated state
-  const factory JobsenseAuthState.authenticated() = _Authenticated;
+  const factory JobsenseAuthState.authenticated({required UserModel user}) =
+      _Authenticated;
 }

@@ -106,7 +106,7 @@ class Welcome extends StatelessWidget {
             JobsenseButton(
               color: context.colorScheme.onPrimary,
               action: () {
-                context.router.pushNamed('/jobsense-home');
+                context.router.pushNamed('/jobsense-auth');
               },
               text: 'Get Started',
             ),

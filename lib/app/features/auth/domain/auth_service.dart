@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:jobsense/app/features/auth/domain/models/user_model.dart';
 
 class AuthService {
@@ -81,7 +80,7 @@ class AuthService {
     return _firebaseAuth.currentUser;
   }
 
-    Future<void> completeProfile(String userId, UserModel user) async {
+  Future<void> completeProfile(String userId, UserModel user) async {
     await _firestore.collection('users').doc(userId).set(user.toMap());
   }
 }
