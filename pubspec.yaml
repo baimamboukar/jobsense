@@ -27,7 +27,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   formz: ^0.6.1
-  freezed: ^2.4.6
+  freezed: ^2.4.7
   freezed_annotation: ^2.4.1
   glass_kit: ^3.0.0
   heroicons: ^0.9.0
