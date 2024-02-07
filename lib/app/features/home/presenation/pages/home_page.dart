@@ -5,9 +5,11 @@ import 'package:heroicons/heroicons.dart';
 import 'package:jobsense/app/extensions/contextx.dart';
 import 'package:jobsense/app/extensions/numx.dart';
 import 'package:jobsense/app/extensions/widgetx.dart';
+import 'package:jobsense/app/features/auth/domain/models/socialize.dart';
 import 'package:jobsense/app/features/auth/presentation/widgets/overlay_navigation.dart';
 import 'package:jobsense/app/features/home/data/models/job.dart';
 import 'package:jobsense/app/features/home/presenation/widgets/recent_jobs.dart';
+import 'package:jobsense/app/features/home/presenation/widgets/social_life.dart';
 import 'package:jobsense/app/features/home/presenation/widgets/welcome_tile.dart';
 import 'package:jobsense/app/router/router.gr.dart' as routes;
 
@@ -58,46 +60,70 @@ class _HomepageState extends State<Homepage> {
         reverseTriggerPercentage: reverseTriggerPercentage,
         child: SingleChildScrollView(
           controller: _scrollController,
-          child: Column(
-            children: [
-              34.vGap,
-              const WelcomeTile().hPadding,
-              14.vGap,
-              // const Dashboard(),
-
-              const SearchBox().hPadding,
-              24.vGap,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Selected for you',
-                    style: context.typography.bodyLarge,
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        'See all',
-                        style: context.typography.bodyMedium,
-                      ),
-                      HeroIcon(
-                        HeroIcons.chevronRight,
-                        color: context.colorScheme.onBackground,
-                        size: 14,
-                      ),
-                    ],
-                  ),
+          child: ValueListenableBuilder(
+            valueListenable: navigationListener,
+            builder: (context, index, child) {
+              return IndexedStack(
+                index: index,
+                children: const [
+                  Text('Profile'),
+                  SocialLife(),
+                  JobListing(),
+                  Socialize(),
                 ],
-              ).hPadding,
-              14.vGap,
-              const RelevantJobs(),
-
-              34.vGap,
-              const RecentJobs().hPadding,
-            ],
+              );
+            },
           ),
         ),
       ),
+    );
+  }
+}
+
+class JobListing extends StatelessWidget {
+  const JobListing({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        34.vGap,
+        const WelcomeTile().hPadding,
+        14.vGap,
+        // const Dashboard(),
+
+        const SearchBox().hPadding,
+        24.vGap,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Selected for you',
+              style: context.typography.bodyLarge,
+            ),
+            Row(
+              children: [
+                Text(
+                  'See all',
+                  style: context.typography.bodyMedium,
+                ),
+                HeroIcon(
+                  HeroIcons.chevronRight,
+                  color: context.colorScheme.onBackground,
+                  size: 14,
+                ),
+              ],
+            ),
+          ],
+        ).hPadding,
+        14.vGap,
+        const RelevantJobs(),
+
+        34.vGap,
+        const RecentJobs().hPadding,
+      ],
     );
   }
 }
@@ -347,9 +373,9 @@ class _ScrollListener extends StatelessWidget {
           //navigationListener.setIndex = 0;
           navigationListener.resetIndex();
         } else if (scrollOffset / maxScrollExtent > triggerPercentage) {
-          navigationListener.setIndex = 0;
+          // navigationListener.setIndex = 0;
         } else if (scrollOffset / minScrollExtent < reverseTriggerPercentage) {
-          navigationListener.resetIndex();
+          // navigationListener.resetIndex();
         }
 
         return true;

@@ -70,7 +70,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
           ),
           ListTile(
             leading: const HeroIcon(HeroIcons.cursorArrowRays),
-            title: const Text('Private Content'),
+            title: const Text('Dark Mode'),
             subtitle: Text(
               'Control app themes',
               style: context.typography.bodyLarge!.copyWith(
