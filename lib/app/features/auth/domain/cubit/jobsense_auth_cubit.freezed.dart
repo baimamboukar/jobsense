@@ -25,7 +25,7 @@ mixin _$JobsenseAuthState {
     required TResult Function(String failure) loginFailure,
     required TResult Function() logoutLoading,
     required TResult Function(String failure) logoutFailure,
-    required TResult Function() authenticated,
+    required TResult Function(UserModel user) authenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +37,7 @@ mixin _$JobsenseAuthState {
     TResult? Function(String failure)? loginFailure,
     TResult? Function()? logoutLoading,
     TResult? Function(String failure)? logoutFailure,
-    TResult? Function()? authenticated,
+    TResult? Function(UserModel user)? authenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -49,7 +49,7 @@ mixin _$JobsenseAuthState {
     TResult Function(String failure)? loginFailure,
     TResult Function()? logoutLoading,
     TResult Function(String failure)? logoutFailure,
-    TResult Function()? authenticated,
+    TResult Function(UserModel user)? authenticated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -155,7 +155,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(String failure) loginFailure,
     required TResult Function() logoutLoading,
     required TResult Function(String failure) logoutFailure,
-    required TResult Function() authenticated,
+    required TResult Function(UserModel user) authenticated,
   }) {
     return initial();
   }
@@ -170,7 +170,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(String failure)? loginFailure,
     TResult? Function()? logoutLoading,
     TResult? Function(String failure)? logoutFailure,
-    TResult? Function()? authenticated,
+    TResult? Function(UserModel user)? authenticated,
   }) {
     return initial?.call();
   }
@@ -185,7 +185,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(String failure)? loginFailure,
     TResult Function()? logoutLoading,
     TResult Function(String failure)? logoutFailure,
-    TResult Function()? authenticated,
+    TResult Function(UserModel user)? authenticated,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -293,7 +293,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(String failure) loginFailure,
     required TResult Function() logoutLoading,
     required TResult Function(String failure) logoutFailure,
-    required TResult Function() authenticated,
+    required TResult Function(UserModel user) authenticated,
   }) {
     return loading();
   }
@@ -308,7 +308,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(String failure)? loginFailure,
     TResult? Function()? logoutLoading,
     TResult? Function(String failure)? logoutFailure,
-    TResult? Function()? authenticated,
+    TResult? Function(UserModel user)? authenticated,
   }) {
     return loading?.call();
   }
@@ -323,7 +323,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(String failure)? loginFailure,
     TResult Function()? logoutLoading,
     TResult Function(String failure)? logoutFailure,
-    TResult Function()? authenticated,
+    TResult Function(UserModel user)? authenticated,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -457,7 +457,7 @@ class _$FailureImpl implements _Failure {
     required TResult Function(String failure) loginFailure,
     required TResult Function() logoutLoading,
     required TResult Function(String failure) logoutFailure,
-    required TResult Function() authenticated,
+    required TResult Function(UserModel user) authenticated,
   }) {
     return failure(this.failure);
   }
@@ -472,7 +472,7 @@ class _$FailureImpl implements _Failure {
     TResult? Function(String failure)? loginFailure,
     TResult? Function()? logoutLoading,
     TResult? Function(String failure)? logoutFailure,
-    TResult? Function()? authenticated,
+    TResult? Function(UserModel user)? authenticated,
   }) {
     return failure?.call(this.failure);
   }
@@ -487,7 +487,7 @@ class _$FailureImpl implements _Failure {
     TResult Function(String failure)? loginFailure,
     TResult Function()? logoutLoading,
     TResult Function(String failure)? logoutFailure,
-    TResult Function()? authenticated,
+    TResult Function(UserModel user)? authenticated,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -600,7 +600,7 @@ class _$LoginLoadingImpl implements _LoginLoading {
     required TResult Function(String failure) loginFailure,
     required TResult Function() logoutLoading,
     required TResult Function(String failure) logoutFailure,
-    required TResult Function() authenticated,
+    required TResult Function(UserModel user) authenticated,
   }) {
     return loginLoading();
   }
@@ -615,7 +615,7 @@ class _$LoginLoadingImpl implements _LoginLoading {
     TResult? Function(String failure)? loginFailure,
     TResult? Function()? logoutLoading,
     TResult? Function(String failure)? logoutFailure,
-    TResult? Function()? authenticated,
+    TResult? Function(UserModel user)? authenticated,
   }) {
     return loginLoading?.call();
   }
@@ -630,7 +630,7 @@ class _$LoginLoadingImpl implements _LoginLoading {
     TResult Function(String failure)? loginFailure,
     TResult Function()? logoutLoading,
     TResult Function(String failure)? logoutFailure,
-    TResult Function()? authenticated,
+    TResult Function(UserModel user)? authenticated,
     required TResult orElse(),
   }) {
     if (loginLoading != null) {
@@ -764,7 +764,7 @@ class _$LoginFailureImpl implements _LoginFailure {
     required TResult Function(String failure) loginFailure,
     required TResult Function() logoutLoading,
     required TResult Function(String failure) logoutFailure,
-    required TResult Function() authenticated,
+    required TResult Function(UserModel user) authenticated,
   }) {
     return loginFailure(this.failure);
   }
@@ -779,7 +779,7 @@ class _$LoginFailureImpl implements _LoginFailure {
     TResult? Function(String failure)? loginFailure,
     TResult? Function()? logoutLoading,
     TResult? Function(String failure)? logoutFailure,
-    TResult? Function()? authenticated,
+    TResult? Function(UserModel user)? authenticated,
   }) {
     return loginFailure?.call(this.failure);
   }
@@ -794,7 +794,7 @@ class _$LoginFailureImpl implements _LoginFailure {
     TResult Function(String failure)? loginFailure,
     TResult Function()? logoutLoading,
     TResult Function(String failure)? logoutFailure,
-    TResult Function()? authenticated,
+    TResult Function(UserModel user)? authenticated,
     required TResult orElse(),
   }) {
     if (loginFailure != null) {
@@ -907,7 +907,7 @@ class _$LogoutLoadingImpl implements _LogoutLoading {
     required TResult Function(String failure) loginFailure,
     required TResult Function() logoutLoading,
     required TResult Function(String failure) logoutFailure,
-    required TResult Function() authenticated,
+    required TResult Function(UserModel user) authenticated,
   }) {
     return logoutLoading();
   }
@@ -922,7 +922,7 @@ class _$LogoutLoadingImpl implements _LogoutLoading {
     TResult? Function(String failure)? loginFailure,
     TResult? Function()? logoutLoading,
     TResult? Function(String failure)? logoutFailure,
-    TResult? Function()? authenticated,
+    TResult? Function(UserModel user)? authenticated,
   }) {
     return logoutLoading?.call();
   }
@@ -937,7 +937,7 @@ class _$LogoutLoadingImpl implements _LogoutLoading {
     TResult Function(String failure)? loginFailure,
     TResult Function()? logoutLoading,
     TResult Function(String failure)? logoutFailure,
-    TResult Function()? authenticated,
+    TResult Function(UserModel user)? authenticated,
     required TResult orElse(),
   }) {
     if (logoutLoading != null) {
@@ -1071,7 +1071,7 @@ class _$LogoutFailureImpl implements _LogoutFailure {
     required TResult Function(String failure) loginFailure,
     required TResult Function() logoutLoading,
     required TResult Function(String failure) logoutFailure,
-    required TResult Function() authenticated,
+    required TResult Function(UserModel user) authenticated,
   }) {
     return logoutFailure(this.failure);
   }
@@ -1086,7 +1086,7 @@ class _$LogoutFailureImpl implements _LogoutFailure {
     TResult? Function(String failure)? loginFailure,
     TResult? Function()? logoutLoading,
     TResult? Function(String failure)? logoutFailure,
-    TResult? Function()? authenticated,
+    TResult? Function(UserModel user)? authenticated,
   }) {
     return logoutFailure?.call(this.failure);
   }
@@ -1101,7 +1101,7 @@ class _$LogoutFailureImpl implements _LogoutFailure {
     TResult Function(String failure)? loginFailure,
     TResult Function()? logoutLoading,
     TResult Function(String failure)? logoutFailure,
-    TResult Function()? authenticated,
+    TResult Function(UserModel user)? authenticated,
     required TResult orElse(),
   }) {
     if (logoutFailure != null) {
@@ -1174,6 +1174,8 @@ abstract class _$$AuthenticatedImplCopyWith<$Res> {
   factory _$$AuthenticatedImplCopyWith(
           _$AuthenticatedImpl value, $Res Function(_$AuthenticatedImpl) then) =
       __$$AuthenticatedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({UserModel user});
 }
 
 /// @nodoc
@@ -1183,26 +1185,50 @@ class __$$AuthenticatedImplCopyWithImpl<$Res>
   __$$AuthenticatedImplCopyWithImpl(
       _$AuthenticatedImpl _value, $Res Function(_$AuthenticatedImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? user = null,
+  }) {
+    return _then(_$AuthenticatedImpl(
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserModel,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$AuthenticatedImpl implements _Authenticated {
-  const _$AuthenticatedImpl();
+  const _$AuthenticatedImpl({required this.user});
+
+  @override
+  final UserModel user;
 
   @override
   String toString() {
-    return 'JobsenseAuthState.authenticated()';
+    return 'JobsenseAuthState.authenticated(user: $user)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$AuthenticatedImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$AuthenticatedImpl &&
+            (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, user);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AuthenticatedImplCopyWith<_$AuthenticatedImpl> get copyWith =>
+      __$$AuthenticatedImplCopyWithImpl<_$AuthenticatedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1214,9 +1240,9 @@ class _$AuthenticatedImpl implements _Authenticated {
     required TResult Function(String failure) loginFailure,
     required TResult Function() logoutLoading,
     required TResult Function(String failure) logoutFailure,
-    required TResult Function() authenticated,
+    required TResult Function(UserModel user) authenticated,
   }) {
-    return authenticated();
+    return authenticated(user);
   }
 
   @override
@@ -1229,9 +1255,9 @@ class _$AuthenticatedImpl implements _Authenticated {
     TResult? Function(String failure)? loginFailure,
     TResult? Function()? logoutLoading,
     TResult? Function(String failure)? logoutFailure,
-    TResult? Function()? authenticated,
+    TResult? Function(UserModel user)? authenticated,
   }) {
-    return authenticated?.call();
+    return authenticated?.call(user);
   }
 
   @override
@@ -1244,11 +1270,11 @@ class _$AuthenticatedImpl implements _Authenticated {
     TResult Function(String failure)? loginFailure,
     TResult Function()? logoutLoading,
     TResult Function(String failure)? logoutFailure,
-    TResult Function()? authenticated,
+    TResult Function(UserModel user)? authenticated,
     required TResult orElse(),
   }) {
     if (authenticated != null) {
-      return authenticated();
+      return authenticated(user);
     }
     return orElse();
   }
@@ -1304,5 +1330,11 @@ class _$AuthenticatedImpl implements _Authenticated {
 }
 
 abstract class _Authenticated implements JobsenseAuthState {
-  const factory _Authenticated() = _$AuthenticatedImpl;
+  const factory _Authenticated({required final UserModel user}) =
+      _$AuthenticatedImpl;
+
+  UserModel get user;
+  @JsonKey(ignore: true)
+  _$$AuthenticatedImplCopyWith<_$AuthenticatedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

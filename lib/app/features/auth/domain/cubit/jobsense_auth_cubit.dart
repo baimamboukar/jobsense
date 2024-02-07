@@ -17,29 +17,63 @@ class JobsenseAuthCubit extends HydratedCubit<JobsenseAuthState> {
     emit(const JobsenseAuthState.loading());
     try {
       final service = AuthService();
-      final user = await service.signUp(
+      await service.signUp(
         email: email,
         password: password,
         user: user,
       );
-      emit(JobsenseAuthState.authenticated(user));
+      emit(JobsenseAuthState.authenticated(user: user));
     } catch (e) {
       emit(JobsenseAuthState.failure(e.toString()));
     }
   }
 
+  Future<void> signOut() async {
+    emit(const JobsenseAuthState.logoutLoading());
+    try {
+      final service = AuthService();
+      await service.signOut();
+      emit(const JobsenseAuthState.initial());
+    } catch (e) {
+      emit(JobsenseAuthState.logoutFailure(e.toString()));
+    }
+  }
+
   @override
   JobsenseAuthState? fromJson(Map<String, dynamic> json) {
-    final user = json['user'] as bool;
-    return user
-        ? const JobsenseAuthState.authenticated()
+    final userJson = json['user'] as Map<String, dynamic>;
+    final user = UserModel.fromMap(userJson);
+    return userJson.isNotEmpty
+        ? JobsenseAuthState.authenticated(user: user)
         : const JobsenseAuthState.initial();
   }
 
   @override
   Map<String, dynamic>? toJson(JobsenseAuthState state) {
     return {
-      'user': true,
+      'user': state.maybeMap(
+        authenticated: (data) => data.user.toMap(),
+        orElse: () => null,
+      ),
     };
   }
+}
+
+@override
+JobsenseAuthState? fromJson(Map<String, dynamic> json) {
+  final userJson = json['user'] as Map<String, dynamic>;
+  final user = UserModel.fromMap(userJson);
+  return userJson.isNotEmpty
+      ? JobsenseAuthState.authenticated(user: user)
+      : const JobsenseAuthState.initial();
+}
+
+@override
+Map<String, dynamic>? toJson(JobsenseAuthState state) {
+  return {
+    'user': state.maybeMap(
+      authenticated: (data) => data.user.toMap(),
+      orElse: () => null,
+    ),
+  };
 }

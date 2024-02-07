@@ -8,7 +8,7 @@ class AuthService {
 
   Stream<User?> get authStateChanges => _firebaseAuth.authStateChanges();
 
-  Future<String?> signUp({
+  Future<UserModel> signUp({
     required String email,
     required String password,
     required UserModel user,
@@ -22,9 +22,9 @@ class AuthService {
       // Create user document in Firestore
       await _createUserDocument(user);
 
-      return null; // Success, return null for no error
+      return user;
     } on FirebaseAuthException catch (e) {
-      return e.message; // Return error message
+      rethrow;
     }
   }
 
@@ -38,18 +38,20 @@ class AuthService {
     }
   }
 
-  Future<String?> signIn({
+  Future<UserModel> signIn({
     required String email,
     required String password,
   }) async {
     try {
-      await _firebaseAuth.signInWithEmailAndPassword(
+      // ignore: unused_local_variable
+      final creds = await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-      return null; // Success, return null for no error
-    } on FirebaseAuthException catch (e) {
-      return e.message; // Return error message
+      final user = await getUserData();
+      return user;
+    } on FirebaseAuthException {
+      rethrow;
     }
   }
 
@@ -57,7 +59,7 @@ class AuthService {
     await _firebaseAuth.signOut();
   }
 
-  Future<UserModel?> getUserData() async {
+  Future<UserModel> getUserData() async {
     final firebaseUser = _firebaseAuth.currentUser;
 
     if (firebaseUser != null) {
@@ -69,11 +71,10 @@ class AuthService {
           return UserModel.fromMap(userDoc.data()!);
         }
       } catch (e) {
-        print('Error fetching user data: $e');
+        throw Exception('Error fetching user data');
       }
     }
-
-    return null;
+    throw Exception('Error fetching user data');
   }
 
   User? getCurrentUser() {

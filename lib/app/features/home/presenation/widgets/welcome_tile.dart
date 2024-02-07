@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:heroicons/heroicons.dart';
+import 'package:jobsense/app/extensions/auth_cubit.dart';
 import 'package:jobsense/app/extensions/contextx.dart';
 import 'package:jobsense/app/extensions/numx.dart';
 
@@ -28,8 +29,8 @@ class WelcomeTile extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Hey, Baimam Boukar',
+            Text(
+              'Hey, ${context.user!.displayName}',
             ),
             Text(
               'Welcome Back 👋',
